@@ -3,6 +3,7 @@ import { useMachine } from '@xstate/react'
 import machine from 'stateMachines/pages/board'
 import events from 'stateMachines/pages/board/events'
 import HeaderAndBody from 'templates/HeaderAndBody'
+import Instructions from 'atoms/Instructions'
 
 const Board = () => {
   const [boardState, send] = useMachine(machine, { devTools: true })
@@ -19,7 +20,9 @@ const Board = () => {
           machine: boardState.children.checkbox
         } 
       }}
-    />
+    >
+      <Instructions />
+    </HeaderAndBody>
   )
 }
 

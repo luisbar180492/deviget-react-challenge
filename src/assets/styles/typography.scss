@@ -8,7 +8,7 @@
   @mixin bodyFontStyle {
     font-family: Alegreya Sans;
     font-weight: normal;
-    @apply text-gray-600 dark:text-violet-500;
+    @apply text-gray-600 dark:text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -56,6 +56,6 @@
 
   code {
     @include bodyFontStyle;
-    @apply text-lg p-1 bg-gray-300 dark:bg-pink-200 rounded-md;
+    @apply text-lg p-1 bg-gray-300 dark:bg-violet-400 rounded-md;
   }
 }
