@@ -10,5 +10,7 @@
   "game.txt7": "`Rules`",
   "game.txt8": "- To move: Each player takes alternating turns. During each player’s turn, drop a colored piece of that player’s color into the slots of the game board. \n\n - To win: To get three in a row, vertically, horizontally or diagonally.",
   "game.txt9": "`Strategies`",
-  "game.txt10": "- Beginners: Remember to check all possible connecting lines, including horizontal, vertical and diagonal lines for possible threats. \n\n - Advanced: A key strategy to win is by making two simultaneous threats for the opponent. Usually this involves connecting three discs to prevent the opponent from having an advantage in that column. Also, remember that discs placed in the middle are more valuable then those place on the sides because players have more chances of creating four in a row with them."
+  "game.txt10": "- Beginners: Remember to check all possible connecting lines, including horizontal, vertical and diagonal lines for possible threats. \n\n - Advanced: A key strategy to win is by making two simultaneous threats for the opponent. Usually this involves connecting three discs to prevent the opponent from having an advantage in that column. Also, remember that discs placed in the middle are more valuable then those place on the sides because players have more chances of creating four in a row with them.",
+  "game.txt11": "English",
+  "game.txt12": "Spanish"
 }

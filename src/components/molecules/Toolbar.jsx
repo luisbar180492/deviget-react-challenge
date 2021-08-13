@@ -1,9 +1,10 @@
 import React from 'react'
 import Text from 'atoms/Text'
 import Checkbox from 'atoms/Checkbox'
+import Dropdown from 'atoms/Dropdown'
 import propTypes from 'prop-types'
 
-const Toolbar = ({ title, checkbox: { label, payload, machine } }) => {
+const Toolbar = ({ title, checkbox, dropdown }) => {
 
   return (
     <div
@@ -14,12 +15,17 @@ const Toolbar = ({ title, checkbox: { label, payload, machine } }) => {
         className='p-5'
         text={title}
       />
-      <Checkbox
-        className='p-5'
-        label={label}
-        payload={payload}
-        machine={machine}
-      />
+      <div
+        className='flex flex-row items-center'
+      >
+        <Dropdown
+          {...dropdown}
+        />
+        <Checkbox
+          className='p-5'
+          {...checkbox}
+        />
+      </div>
     </div>
   )
 }
@@ -30,7 +36,15 @@ Toolbar.propTypes = {
     label: propTypes.string.isRequired,
     payload: propTypes.object.isRequired,
     machine: propTypes.object.isRequired,
-  }).isRequired
+  }).isRequired,
+  dropdown: propTypes.shape({
+    options: propTypes.arrayOf(
+      propTypes.shape({
+        key: propTypes.string.isRequired,
+        value: propTypes.string.isRequired
+      }).isRequired
+    ).isRequired
+  })
 }
 
 export default Toolbar

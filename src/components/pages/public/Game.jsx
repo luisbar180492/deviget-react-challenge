@@ -22,8 +22,20 @@ const Game = () => {
           payload: {
             event: events.TOGGLE_THEME,
           },
-          machine: gameState.children.checkbox
-        } 
+          machine: gameState.children.checkbox,
+        },
+        dropdown: {
+          options: [
+            {
+              key: 'en',
+              value: 'game.txt11'
+            },
+            {
+              key: 'es',
+              value: 'game.txt12'
+            },
+          ],
+        },
       }}
     >
       <About

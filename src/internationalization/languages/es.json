@@ -10,5 +10,7 @@
   "game.txt7": "`Reglas`",
   "game.txt8": "- Para moverse: Cada jugador toma turnos alternos. Durante el turno de cada jugador, deja caer una pieza de color del color de ese jugador en las ranuras del tablero de juego.\n\n - Para ganar: Para conseguir tres seguidos, vertical, horizontal o diagonalmente.",
   "game.txt9": "`Estrategias`",
-  "game.txt10": "- Principiantes: Recuerde revisar todas las líneas de conexión posibles, incluidas las líneas horizontales, verticales y diagonales para detectar posibles amenazas.\n\n - Avanzado: Una estrategia clave para ganar es hacer dos amenazas simultáneas para el oponente. Por lo general, esto implica conectar tres discos para evitar que el oponente tenga una ventaja en esa columna. Además, recuerde que los discos colocados en el medio son más valiosos que los que se colocan en los lados porque los jugadores tienen más posibilidades de crear cuatro en fila con ellos."
+  "game.txt10": "- Principiantes: Recuerde revisar todas las líneas de conexión posibles, incluidas las líneas horizontales, verticales y diagonales para detectar posibles amenazas.\n\n - Avanzado: Una estrategia clave para ganar es hacer dos amenazas simultáneas para el oponente. Por lo general, esto implica conectar tres discos para evitar que el oponente tenga una ventaja en esa columna. Además, recuerde que los discos colocados en el medio son más valiosos que los que se colocan en los lados porque los jugadores tienen más posibilidades de crear cuatro en fila con ellos.",
+  "game.txt11": "Ingles",
+  "game.txt12": "Español"
 }

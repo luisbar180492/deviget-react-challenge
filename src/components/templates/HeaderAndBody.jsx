@@ -27,7 +27,15 @@ HeaderAndBody.propTypes = {
       label: propTypes.string.isRequired,
       payload: propTypes.object.isRequired,
       machine: propTypes.object.isRequired,
-    }).isRequired
+    }).isRequired,
+    dropdown: propTypes.shape({
+      options: propTypes.arrayOf(
+        propTypes.shape({
+          key: propTypes.string.isRequired,
+          value: propTypes.string.isRequired
+        }).isRequired
+      ).isRequired
+    })
   })
 }
 
