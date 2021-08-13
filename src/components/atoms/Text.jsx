@@ -10,19 +10,26 @@ const Text = ({ as, text, className }) => {
   
   if (as === 'md')
     return (
-      <>
-        {
-          unified()
-          .use(markdown2remark)
-          .use(remark2react)
-          .processSync(text).result
-        }
-      </>
+      <div
+        className={className}
+      >
+        <FormattedMessage
+          id={text}
+          text={text}
+        >  
+          {
+            ([text]) => unified()
+            .use(markdown2remark)
+            .use(remark2react)
+            .processSync(text).result
+          }
+        </FormattedMessage>
+      </div>
     )
 
   return (
     <Component
-      className={`${className}`}
+      className={className}
     >
       <FormattedMessage
         id={text}
