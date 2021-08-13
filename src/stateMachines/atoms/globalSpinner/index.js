@@ -1,18 +1,19 @@
 import { Machine } from 'xstate'
-import states from './config/states'
+import states from 'stateMachines/atoms/globalSpinner/states'
+import events from 'stateMachines/atoms/globalSpinner/events'
   
 export default Machine({
   id: 'globalSpinner',
   initial: states.INVISIBLE,
   states : {
-    invisible: {
+    [states.INVISIBLE]: {
       on: {
-        TOGGLE: states.VISIBLE,
+        [events.TOGGLE]: states.VISIBLE,
       },
     },
-    visible: {
+    [states.VISIBLE]: {
       on: {
-        TOGGLE: states.INVISIBLE,
+        [events.TOGGLE]: states.INVISIBLE,
       },
     },
   },
