@@ -7,7 +7,7 @@ const Toolbar = ({ title, checkbox: { label, payload, machine } }) => {
 
   return (
     <div
-      className='flex flex-row justify-between'
+      className='flex flex-row justify-between shadow-md'
     >
       <Text
         as='h4'
