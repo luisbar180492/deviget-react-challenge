@@ -11,7 +11,11 @@ const HeaderAndBody = ({ toolbar, children }) => {
       <Toolbar
         {...toolbar}
       />
-      {children}
+      <div
+        className='flex flex-col p-5'
+      >
+        {children}
+      </div>
     </div>
   )
 }
