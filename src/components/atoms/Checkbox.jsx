@@ -1,16 +1,15 @@
 import React from 'react'
-import { useMachine } from '@xstate/react'
+import { useActor } from '@xstate/react'
 import { FormattedMessage } from 'react-intl'
 import propTypes from 'prop-types'
-import machine from 'stateMachines/atoms/checkbox'
-import events from 'stateMachines/atoms/checkbox/config/events'
+import events from 'stateMachines/atoms/checkbox/events'
 
-const Checkbox = ({ label, className, action }) => {
-  const [state, send] = useMachine(machine, { devTools: true })
+const Checkbox = ({ label, className, payload, machine }) => {
+  const [state, send] = useActor(machine)
 
   const onClick = () => {
     send({
-      action,
+      payload,
       type: events.TOGGLE,
     })
   }
@@ -47,8 +46,9 @@ const Checkbox = ({ label, className, action }) => {
 
 Checkbox.propTypes = {
   label: propTypes.string.isRequired,
-  action: propTypes.string.isRequired,
+  payload: propTypes.object.isRequired,
   className: propTypes.string,
+  machine: propTypes.object.isRequired,
 }
 
 export default Checkbox

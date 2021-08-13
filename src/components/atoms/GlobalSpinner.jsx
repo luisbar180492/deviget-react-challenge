@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import { useMachine } from  '@xstate/react'
-import { globalSpinner } from 'stateMachines/index'
+import machine from 'stateMachines/atoms/globalSpinner'
 
 const GlobalSpinner = () => {
   
@@ -13,7 +13,7 @@ const GlobalSpinner = () => {
 
 const GlobalSpinnerContext = createContext([])
 const GlobalSpinnerProvider = ({ children }) => {
-  const [state, send] = useMachine(globalSpinner, { devTools: true })
+  const [state, send] = useMachine(machine, { devTools: true })
 
   return (
     <GlobalSpinnerContext.Provider

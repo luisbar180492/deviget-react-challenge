@@ -1,17 +1,7 @@
 [
   {
-    "name": "Helmet",
-    "path": "/helmet",
+    "name": "Board",
+    "path": "/board",
     "extension": "jsx"
-  },
-  {
-    "name": "Home",
-    "path": "/",
-    "extension": "jsx"
-  },
-  {
-    "name": "Markdown",
-    "path": "/markdown",
-    "extension": "mdx"
   }
 ]

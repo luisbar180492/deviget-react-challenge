@@ -1,0 +1,3 @@
+module.exports = {
+  CHECKBOX: 'checkbox'
+}

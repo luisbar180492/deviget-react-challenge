@@ -1,29 +1,30 @@
-import { createMachine } from 'xstate'
-import { shouldChangeThemeMode } from './guards'
-import { changeThemeMode  } from './actions'
-import states from './config/states'
+import { createMachine, sendParent } from 'xstate'
+import states from 'stateMachines/atoms/checkbox/states'
+import events from 'stateMachines/atoms/checkbox/events'
 
 export const machineDefinition = {
   id: 'checkbox',
   initial: states.UNCHECKED,
   states : {
-    unchecked: {
+    [states.UNCHECKED]: {
       on: {
-        TOGGLE: [
+        [events.TOGGLE]: [
           {
-            cond: shouldChangeThemeMode,
-            actions: changeThemeMode,
+            actions: [sendParent((context, event) => ({
+              type: event.payload.event,
+            }))],
             target: states.CHECKED,
           },
         ],
       },
     },
-    checked: {
+    [states.CHECKED]: {
       on: {
-        TOGGLE: [
+        [events.TOGGLE]: [
           {
-            cond: shouldChangeThemeMode,
-            actions: changeThemeMode,
+            actions: [sendParent((context, event) => ({
+              type: event.payload.event,
+            }))],
             target: states.UNCHECKED,
           },
         ],
