@@ -21,7 +21,7 @@ const Checkbox = ({ label, className, payload, machine }) => {
       onClick={onClick}
     >
       <span
-        className='dark:text-green-300'
+        className='dark:text-pink-400'
       >
         <FormattedMessage
           id={label}
@@ -33,7 +33,7 @@ const Checkbox = ({ label, className, payload, machine }) => {
       />
       <div
         data-testid='checkbox-child-3'
-        className={`w-8 h-4 rounded-md duration-500 ${state.value === 'checked' ? 'bg-green-300' : 'bg-gray-400'}`}
+        className={`w-8 h-4 rounded-md duration-500 ${state.value === 'checked' ? 'bg-pink-400' : 'bg-gray-400'}`}
       >
         <div
           data-testid='checkbox-child-3.1'
