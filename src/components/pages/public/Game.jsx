@@ -1,12 +1,12 @@
 import React from 'react'
 import { useMachine } from '@xstate/react'
-import machine from 'stateMachines/pages/board'
-import events from 'stateMachines/pages/board/events'
+import machine from 'stateMachines/pages/game'
+import events from 'stateMachines/pages/game/events'
 import HeaderAndBody from 'templates/HeaderAndBody'
 import Instructions from 'atoms/Instructions'
 
-const Board = () => {
-  const [boardState, send] = useMachine(machine, { devTools: true })
+const Game = () => {
+  const [gameState, send] = useMachine(machine, { devTools: true })
 
   return (
     <HeaderAndBody
@@ -17,7 +17,7 @@ const Board = () => {
           payload: {
             event: events.TOGGLE_THEME,
           },
-          machine: boardState.children.checkbox
+          machine: gameState.children.checkbox
         } 
       }}
     >
@@ -26,4 +26,4 @@ const Board = () => {
   )
 }
 
-export default Board
+export default Game

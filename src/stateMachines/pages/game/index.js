@@ -1,11 +1,11 @@
 import { Machine } from 'xstate'
-import states from 'stateMachines/pages/board/states'
-import children from 'stateMachines/pages/board/children'
-import events from 'stateMachines/pages/board/events'
+import states from 'stateMachines/pages/game/states'
+import children from 'stateMachines/pages/game/children'
+import events from 'stateMachines/pages/game/events'
 import checkboxMachine from 'stateMachines/atoms/checkbox'
 
 export default Machine({
-  id: 'board',
+  id: 'game',
   initial: states.WAITING,
   context: {
     features: [],
