@@ -6,13 +6,13 @@ const HeaderAndBody = ({ toolbar, children }) => {
 
   return (
     <div
-      className='max-h-full dark:bg-gray-800'
+      className='min-h-full dark:bg-gray-800'
     >
       <Toolbar
         {...toolbar}
       />
       <div
-        className='flex flex-col p-5'
+        className='flex flex-col-reverse justify-around items-center xl:flex-row p-5'
       >
         {children}
       </div>
