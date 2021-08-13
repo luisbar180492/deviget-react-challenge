@@ -8,11 +8,12 @@ const Dropdown = ({ options }) => {
     return options.map(({key, value}) => {
       return (
         <FormattedMessage
+          key={key}
           id={value}
           defaultMessage={value}
         >
           {
-            (value) => <option key={key} value={key}>{value}</option>
+            (value) => <option value={key}>{value}</option>
           }
         </FormattedMessage>
       )
