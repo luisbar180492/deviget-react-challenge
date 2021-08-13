@@ -1,4 +1,14 @@
 {
-  "home.txt1": "Connect 4",
-  "home.txt2": "Light/Dark"
+  "toolbar.txt1": "Connect Four",
+  "toolbar.txt2": "Light/Dark",
+  "game.txt1": "`History`",
+  "game.txt2": "Connect 4 or Four-in-a-Row has its roots in Tic-Tac-Toe, a simple three in a row pencil and paper game. The object of the game is to get four pieces in a row. Four-In-A-Row, also, adds the element of restricted placement by requiring the players to \"drop\" the pieces vertically down the board. In America, this game was popularized under the name Connect Four. The name “Connect Four” was first coined by Milton Bradley Company in 1974. The company was founded by Milton Bradley in Springfield, Massachusetts in 1860. The company is known for its contributions in the board game and video game industries.",
+  "game.txt3": "`The board`",
+  "game.txt4": "The official playing board is a 6-rows-by-7-columns plastic game board with slots in the middle to place the pieces into. There is also a switch at the right and left hand side of the board that is used to release the pieces from their slots thus resetting the board.",
+  "game.txt5": "`The pieces`",
+  "game.txt6": "The official pieces for Connect Four are 42 black and red checkered playing pieces (21 of each color). Due to the playing board, anything aside from checkered pieces proves to be rather inefficient since most substituted pieces don’t stack well with each other.",
+  "game.txt7": "`Rules`",
+  "game.txt8": "- To move: Each player takes alternating turns. During each player’s turn, drop a colored piece of that player’s color into the slots of the game board. \n\n - To win: To get three in a row, vertically, horizontally or diagonally.",
+  "game.txt9": "`Strategies`",
+  "game.txt10": "- Beginners: Remember to check all possible connecting lines, including horizontal, vertical and diagonal lines for possible threats. \n\n - Advanced: A key strategy to win is by making two simultaneous threats for the opponent. Usually this involves connecting three discs to prevent the opponent from having an advantage in that column. Also, remember that discs placed in the middle are more valuable then those place on the sides because players have more chances of creating four in a row with them."
 }
