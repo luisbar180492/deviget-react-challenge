@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  starter:
+    build: .
+    image: react-starter-kit
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./node_modules:/react-starter-kit/node_modules
+      - ./src:/react-starter-kit/src
+

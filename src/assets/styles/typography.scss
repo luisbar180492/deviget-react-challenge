@@ -1,0 +1,61 @@
+@layer base {
+  @mixin headerFontStyle {
+    font-family: Nunito;
+    font-weight: normal;
+    @apply text-gray-700 dark:text-violet-500;
+  }
+
+  @mixin bodyFontStyle {
+    font-family: Alegreya Sans;
+    font-weight: normal;
+    @apply text-gray-600 dark:text-violet-500;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include headerFontStyle;
+  }
+
+  h1 {
+    @apply text-6xl;
+  }
+
+  h2 {
+    @apply text-5xl;
+  }
+
+  h3 {
+    @apply text-4xl;
+  }
+
+  h4 {
+    @apply text-3xl;
+  }
+
+  h5 {
+    @apply text-2xl;
+  }
+
+  h6 {
+    @apply text-xl;
+  }
+
+  p, li {
+    @include bodyFontStyle;
+    @apply text-lg;
+  }
+
+  span {
+    @include bodyFontStyle;
+    @apply text-base;
+  }
+
+  strong {
+    @include bodyFontStyle;
+    @apply font-bold text-lg;
+  }
+
+  code {
+    @include bodyFontStyle;
+    @apply text-lg p-1 bg-gray-300 dark:bg-pink-200 rounded-md;
+  }
+}

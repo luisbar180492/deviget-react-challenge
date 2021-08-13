@@ -1,0 +1,37 @@
+import { useCurrentRoute } from 'react-navi'
+import AdditionalMarkdown from 'atoms/AdditionalMarkdown'
+
+# Markdown file
+
+This is a markdown file which is processed using Mdx
+<br/>
+
+##### This is the code of the next section
+```javascript
+export const ContentFromConfig = () => {
+  const { data } = useCurrentRoute()
+  return (
+    <div>
+    {data.content}
+    </div>
+  )
+}
+```
+<br/>
+
+##### The following line is a react component
+
+export const ContentFromConfig = () => {
+  const { data } = useCurrentRoute()
+  return (
+    <p
+      className='text-pink-500'
+    >
+    {data.content}
+    </p>
+  )
+}
+
+<ContentFromConfig/>
+
+<AdditionalMarkdown name='This content was passed from parent' />

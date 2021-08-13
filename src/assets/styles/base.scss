@@ -1,0 +1,19 @@
+@layer base {
+  html, body, body > div, body > div > div {
+    @apply h-full;
+  }
+
+  button:focus {
+    outline: none;
+    @apply ring-1 ring-violet-500;
+  }
+
+  *::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  ol,
+  ul {
+    @apply list-disc list-inside ml-3;
+  }
+}

@@ -1,0 +1,14 @@
+@layer utilities {
+  .move-horizontal {
+    animation: move-horizontal 1s ease-out infinite;
+  }
+
+  @keyframes move-horizontal {
+    from {
+      transform: translateX(0vw);
+    }
+    to {
+      transform: translate(100vw);
+    }
+  }
+}

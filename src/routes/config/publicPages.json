@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Helmet",
+    "path": "/helmet",
+    "extension": "jsx"
+  },
+  {
+    "name": "Home",
+    "path": "/",
+    "extension": "jsx"
+  },
+  {
+    "name": "Markdown",
+    "path": "/markdown",
+    "extension": "mdx"
+  }
+]
