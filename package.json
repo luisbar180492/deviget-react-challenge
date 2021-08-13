@@ -1,5 +1,5 @@
 {
- "name": "deviget-nodejs-react-challenge",
+ "name": "deviget-react-challenge",
  "version": "0.0.0",
  "description": "Challenge for the enterprise Deviget using Nodejs and React",
  "main": "src/index.js",
@@ -10,13 +10,13 @@
    "email": "gilsantosjulian@gmail.com"
   }
  ],
- "homepage": "git@personal-gitlab:luisbar/deviget-nodejs-react-challenge.git#readme",
+ "homepage": "git@personal-gitlab:luisbar/deviget-react-challenge.git#readme",
  "repository": {
   "type": "git",
-  "url": "git@personal-gitlab:luisbar/deviget-nodejs-react-challenge.git"
+  "url": "git@personal-gitlab:luisbar/deviget-react-challenge.git"
  },
  "bugs": {
-  "url": "git@personal-gitlab:luisbar/deviget-nodejs-react-challenge.git/issues"
+  "url": "git@personal-gitlab:luisbar/deviget-react-challenge.git/issues"
  },
  "license": "ISC",
  "scripts": {
