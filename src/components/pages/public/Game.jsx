@@ -5,12 +5,18 @@ import events from 'stateMachines/pages/game/events'
 import HeaderAndBody from 'templates/HeaderAndBody'
 import About from 'molecules/About'
 import Board from 'atoms/Board'
+import { useInternationalizationContext } from 'atoms/InternationalizationProvider'
 
 const Game = () => {
   const [gameState, send] = useMachine(machine, { devTools: true })
+  const [language, setLanguage] = useInternationalizationContext()
 
   const onClick = (row, col) => {
     console.log('onClick', row, col);
+  }
+
+  const onChange = (event) => {
+    setLanguage(event.target.value)
   }
   
   return (
@@ -25,6 +31,8 @@ const Game = () => {
           machine: gameState.children.checkbox,
         },
         dropdown: {
+          value: language,
+          onChange: onChange,
           options: [
             {
               key: 'en',

@@ -2,7 +2,7 @@ import React from 'react'
 import propTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl'
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, ...others }) => {
 
   const renderOptions = () => {
     return options.map(({key, value}) => {
@@ -21,7 +21,9 @@ const Dropdown = ({ options }) => {
   }
 
   return (
-    <select>
+    <select
+      {...others}
+    >
       {renderOptions()}
     </select>
   )
