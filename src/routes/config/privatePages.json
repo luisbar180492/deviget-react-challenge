@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "name": "Private",
+    "path": "/private",
+    "extension": "mdx"
+  }
+]
