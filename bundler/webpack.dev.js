@@ -1,6 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+// const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const commonWebPackConfiguration = require('./webpack.common')
 
 module.exports = merge(commonWebPackConfiguration, {
@@ -16,6 +16,6 @@ module.exports = merge(commonWebPackConfiguration, {
     historyApiFallback: true,
   },
   plugins: [
-    new ReactRefreshWebpackPlugin(),
+    // new ReactRefreshWebpackPlugin(),
   ],
 })
