@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useMachine } from '@xstate/react'
 import machine from 'stateMachines/pages/game'
 import events from 'stateMachines/pages/game/events'
@@ -12,12 +12,25 @@ const Game = () => {
   const [language, setLanguage] = useInternationalizationContext()
 
   const onClick = (row, col) => {
-    console.log('onClick', row, col);
+    gameState.context.socket.send({ id: gameState.context.socket.id, row, col }, () => console.log('ack'))
   }
 
   const onChange = (event) => {
     setLanguage(event.target.value)
   }
+
+  useEffect(() => {
+    if (gameState.context.socket)
+      gameState.context.socket.on('message', (data, ack) => {
+        console.log(data)
+        ack()
+      })
+
+    return () => {
+      if (gameState.context.socket)
+        gameState.context.socket.removeListener('message')
+    }
+  }, [gameState])
   
   return (
     <HeaderAndBody
