@@ -37,7 +37,35 @@ export default Machine({
         [events.TOGGLE_THEME]: {
           actions: [toggleTheme],
           target: states.WAITING,
-        }
+        },
+        [events.UNLOCK]: {
+          target: states.UNLOCKED,
+        },
+        [events.LOCK]: {
+          target: states.LOCKED,
+        },
+      }
+    },
+    [states.LOCKED]: {
+      on: {
+        [events.TOGGLE_THEME]: {
+          actions: [toggleTheme],
+          target: states.LOCKED,
+        },
+        [events.UNLOCK]: {
+          target: states.UNLOCKED,
+        },
+      }
+    },
+    [states.UNLOCKED]: {
+      on: {
+        [events.TOGGLE_THEME]: {
+          actions: [toggleTheme],
+          target: states.UNLOCKED,
+        },
+        [events.LOCK]: {
+          target: states.LOCKED,
+        },
       }
     },
     [states.ERROR]: {

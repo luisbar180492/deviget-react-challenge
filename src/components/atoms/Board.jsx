@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 const x = [ '64', '192', '320', '448', '576', '704', '832' ]
 const y = [ '64', '192', '320', '448', '576', '704' ]
 
-const Board = ({ dark, onClick }) => {
+const Board = ({ dark, onClick, locked }) => {
 
   const onClickCircle = (row, col) => () => {
     onClick(row, col)
@@ -15,13 +15,13 @@ const Board = ({ dark, onClick }) => {
       return x.map((x, col) => {
         return (
           <circle
-            className='cursor-pointer'
+            className={`${ locked ? 'cursor-not-allowed' : 'cursor-pointer' }`}
             fill='#C4C4C4'
             r='50'
             key={`${row},${col}`}
             cx={x}
             cy={y}
-            onClick={onClickCircle(row, col)}
+            onClick={locked ? null : onClickCircle(row, col)}
           />
         )
       })
@@ -52,6 +52,7 @@ const Board = ({ dark, onClick }) => {
 Board.propTypes = {
   dark: propTypes.bool.isRequired,
   onClick: propTypes.func.isRequired,
+  locked: propTypes.bool.isRequired,
 }
 
 export default Board
