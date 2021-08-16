@@ -12,6 +12,8 @@ import boardEvents from 'stateMachines/atoms/board/events'
 import checkboxEvents from 'stateMachines/atoms/checkbox/events'
 import fillCircle from 'stateMachines/pages/game/actions/fillCircle'
 import savePlayersInContext from 'stateMachines/pages/game/actions/savePlayersInContext'
+import saveErrorInContext from 'stateMachines/pages/game/actions/saveErrorInContext'
+import removeErrorFromContext from 'stateMachines/pages/game/actions/removeErrorFromContext'
 
 export const machineDefinition = {
   id: 'game',
@@ -80,6 +82,10 @@ export const machineDefinition = {
           actions: [fillCircle],
           target: states.PLAYING,
         },
+        [events.SHOW_FULL_ERROR]: {
+          actions: [saveErrorInContext],
+          target: states.FULL_ERROR,
+        },
       },
     },
     [states.FINISHED]: {
@@ -92,6 +98,14 @@ export const machineDefinition = {
           target: states.PLAYING,
         },
       },
+    },
+    [states.FULL_ERROR]: {
+      after: {
+        100: {
+          actions: [removeErrorFromContext],
+          target: states.PLAYING,
+        }
+      }
     },
     [states.ERROR]: {
       on: {

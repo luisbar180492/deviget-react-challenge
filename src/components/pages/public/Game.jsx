@@ -9,12 +9,19 @@ import Board from 'atoms/Board'
 import { useInternationalizationContext } from 'atoms/InternationalizationProvider'
 import boardEvents from 'stateMachines/atoms/board/events'
 import checkboxEvents from 'stateMachines/atoms/checkbox/events'
+import globalAlertEvents from 'stateMachines/molecules/globalAlert/events'
+import { useGlobalAlertContext } from 'molecules/GlobalAlert'
 
 const Game = () => {
   const [gameState, send] = useMachine(machine, { devTools: true })
   const [language, setLanguage] = useInternationalizationContext()
+  const [alertState, toggleAlert] = useGlobalAlertContext()
 
   const onClick = (row, col) => {
+    if (row === -1) return send({
+      type: events.SHOW_FULL_ERROR,
+    })
+
     const onAck = () => {
       send({
         type: boardEvents.FILL_CIRCLE,
@@ -83,6 +90,15 @@ const Game = () => {
       }
     }
   }, [gameState])
+
+  useEffect(() => {
+    if (gameState.matches(states.FULL_ERROR))
+      toggleAlert({ type: globalAlertEvents.TOGGLE, payload: { type: 'error', message: 'game.txt13' } })
+    
+    if (gameState.matches(states.ERROR))
+      toggleAlert({ type: globalAlertEvents.TOGGLE, payload: { type: 'error', message: gameState.context.error.message } })
+    
+  }, [gameState.context.error])
   
   return (
     <HeaderAndBody

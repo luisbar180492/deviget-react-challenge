@@ -3,5 +3,6 @@ export default {
   WAITING: 'waiting',
   PLAYING: 'playing',
   FINISHED: 'finished',
+  FULL_ERROR: 'full error',
   ERROR: 'error',
 }
