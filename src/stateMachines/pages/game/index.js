@@ -11,12 +11,15 @@ import unlockBoard from 'stateMachines/pages/game/actions/unlockBoard'
 import boardEvents from 'stateMachines/atoms/board/events'
 import checkboxEvents from 'stateMachines/atoms/checkbox/events'
 import fillCircle from 'stateMachines/pages/game/actions/fillCircle'
+import savePlayersInContext from 'stateMachines/pages/game/actions/savePlayersInContext'
 
 export const machineDefinition = {
   id: 'game',
   initial: states.IDLE,
   context: {
     dark: false,
+    playerOne: undefined,
+    playerTwo: undefined,
     error: undefined,
     socket: undefined,
   },
@@ -51,6 +54,7 @@ export const machineDefinition = {
           target: states.WAITING,
         },
         [events.PLAY]: {
+          actions:[savePlayersInContext],
           target: states.PLAYING,
         },
       },

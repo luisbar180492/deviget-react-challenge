@@ -21,6 +21,7 @@ const Game = () => {
         payload: {
           row,
           col,
+          color: gameState.context.socket.id === gameState.context.playerOne ? 'red' : 'blue',
         }
       })
       send({
@@ -28,7 +29,7 @@ const Game = () => {
       })
     }
 
-    gameState.context.socket.send({ id: gameState.context.socket.id, row, col }, onAck)
+    gameState.context.socket.send({ socketId: gameState.context.socket.id, row, col }, onAck)
   }
 
   const onChange = (event) => {
@@ -42,7 +43,7 @@ const Game = () => {
       gameState.context.socket.disconnect(true)
     }
 
-    const onAckMessage = (data, ack) => {
+    const onAckMessage = ({ row, col, socketId }, ack) => {
       ack()
       send({
         type: boardEvents.UNLOCK
@@ -50,18 +51,23 @@ const Game = () => {
       send({
         type: boardEvents.FILL_CIRCLE,
         payload: {
-          row: data.row,
-          col: data.col,
+          row,
+          col,
+          color: socketId === gameState.context.playerOne ? 'red' : 'blue',
         }
       })
     }
 
-    const onReady = (data, ack) => {
+    const onReady = ({ playerOne, playerTwo }, ack) => {
       send({
         type: events.PLAY,
         payload: {
-          socketId: data.id,
+          playerOne,
+          playerTwo,
         },
+      })
+      send({
+        type: playerOne === gameState.context.socket.id ? boardEvents.UNLOCK : boardEvents.LOCK
       })
     }
 
@@ -76,13 +82,6 @@ const Game = () => {
         gameState.context.socket.removeListener('full')
       }
     }
-  }, [gameState])
-
-  useEffect(() => {
-    if (gameState.matches(states.PLAYING) && gameState.event.type === events.PLAY )
-      send({
-        type: gameState.event.payload.socketId === gameState.context.socket.id ? boardEvents.UNLOCK : boardEvents.LOCK
-      })
   }, [gameState])
   
   return (

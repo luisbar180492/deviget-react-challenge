@@ -19,7 +19,7 @@ const Board = ({ dark, machine, onClickCircle }) => {
         return (
           <circle
             className={`${ state.matches(states.LOCKED) ? 'cursor-not-allowed' : 'cursor-pointer' }`}
-            fill={state.context.board[row][col] ? '#78eaa' : '#C4C4C4'}
+            fill={state.context.board[row][col] || '#C4C4C4'}
             r='50'
             key={`${row},${col}`}
             cx={x}
