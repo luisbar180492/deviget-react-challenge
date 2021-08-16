@@ -2,7 +2,6 @@ import React from 'react'
 import propTypes from 'prop-types'
 import { useActor } from '@xstate/react'
 import states from 'stateMachines/atoms/board/states'
-import events from 'stateMachines/atoms/board/events'
 
 const x = [ '64', '192', '320', '448', '576', '704', '832' ]
 const y = [ '64', '192', '320', '448', '576', '704' ]
@@ -11,13 +10,7 @@ const Board = ({ dark, machine, onClickCircle }) => {
   const [state, send] = useActor(machine)
 
   const onClick = (row, col) => () => {
-    onClickCircle(row, col, () => send({
-      payload: {
-        row,
-        col,
-      },
-      type: events.FILL_CIRCLE,
-    }))
+    onClickCircle(row, col)
   }
 
   const renderCircles = () => {
@@ -26,7 +19,7 @@ const Board = ({ dark, machine, onClickCircle }) => {
         return (
           <circle
             className={`${ state.matches(states.LOCKED) ? 'cursor-not-allowed' : 'cursor-pointer' }`}
-            fill='#C4C4C4'
+            fill={state.context.board[row][col] ? '#78eaa' : '#C4C4C4'}
             r='50'
             key={`${row},${col}`}
             cx={x}

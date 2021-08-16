@@ -1,6 +1,7 @@
 import { createMachine } from 'xstate'
 import states from 'stateMachines/atoms/board/states'
 import events from 'stateMachines/atoms/board/events'
+import fillCircle from 'stateMachines/atoms/board/actions/fillCircle'
 
 export const machineDefinition = {
   id: 'board',
@@ -27,6 +28,7 @@ export const machineDefinition = {
         [events.LOCK]: states.LOCKED,
         [events.UNLOCK]: states.UNLOCKED,
         [events.FILL_CIRCLE]: {
+          actions: [fillCircle],
           target: states.UNLOCKED,
         },
       },

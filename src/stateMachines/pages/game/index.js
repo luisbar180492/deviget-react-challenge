@@ -10,6 +10,7 @@ import lockBoard from 'stateMachines/pages/game/actions/lockBoard'
 import unlockBoard from 'stateMachines/pages/game/actions/unlockBoard'
 import boardEvents from 'stateMachines/atoms/board/events'
 import checkboxEvents from 'stateMachines/atoms/checkbox/events'
+import fillCircle from 'stateMachines/pages/game/actions/fillCircle'
 
 export const machineDefinition = {
   id: 'game',
@@ -69,6 +70,10 @@ export const machineDefinition = {
         },
         [boardEvents.UNLOCK]: {
           actions: [unlockBoard],
+          target: states.PLAYING,
+        },
+        [boardEvents.FILL_CIRCLE]: {
+          actions: [fillCircle],
           target: states.PLAYING,
         },
       },

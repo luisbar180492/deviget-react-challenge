@@ -14,12 +14,18 @@ const Game = () => {
   const [gameState, send] = useMachine(machine, { devTools: true })
   const [language, setLanguage] = useInternationalizationContext()
 
-  const onClick = (row, col, callback) => {
+  const onClick = (row, col) => {
     const onAck = () => {
+      send({
+        type: boardEvents.FILL_CIRCLE,
+        payload: {
+          row,
+          col,
+        }
+      })
       send({
         type: boardEvents.LOCK
       })
-      callback()
     }
 
     gameState.context.socket.send({ id: gameState.context.socket.id, row, col }, onAck)
@@ -40,6 +46,13 @@ const Game = () => {
       ack()
       send({
         type: boardEvents.UNLOCK
+      })
+      send({
+        type: boardEvents.FILL_CIRCLE,
+        payload: {
+          row: data.row,
+          col: data.col,
+        }
       })
     }
 
