@@ -9,8 +9,15 @@ const y = [ '64', '192', '320', '448', '576', '704' ]
 const Board = ({ dark, machine, onClickCircle }) => {
   const [state, send] = useActor(machine)
 
+  const calculateWichRow = (col) => {
+    for (let i = state.context.board.length -1; i >= 0; i--)
+      if (!state.context.board[i][col]) return i
+
+    return -1
+  }
+
   const onClick = (row, col) => () => {
-    onClickCircle(row, col)
+    onClickCircle(calculateWichRow(col), col)
   }
 
   const renderCircles = () => {
