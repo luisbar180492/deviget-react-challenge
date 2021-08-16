@@ -7,6 +7,7 @@ import getRoutes from './routes'
 import NotFound from 'pages/public/NotFound'
 import Splash from 'pages/public/Splash'
 import SpinnerProvider from 'atoms/GlobalSpinner'
+import AlertProvider from 'atoms/GlobalAlert'
 import InternationalizationProvider from 'atoms/InternationalizationProvider'
 import 'styles/main.scss'
 
@@ -24,17 +25,19 @@ getRoutes().then(
   ) => {
     ReactDOM.render(
       <SpinnerProvider>
-        <InternationalizationProvider>
-          <Suspense fallback={<Splash />}>
-            <HelmetProvider>
-              <Router routes={routes}>
-                <NotFoundBoundary render={() => <NotFound />}>
-                  <View />
-                </NotFoundBoundary>
-              </Router>
-            </HelmetProvider>
-          </Suspense>
-        </InternationalizationProvider>
+        <AlertProvider>
+          <InternationalizationProvider>
+            <Suspense fallback={<Splash />}>
+              <HelmetProvider>
+                <Router routes={routes}>
+                  <NotFoundBoundary render={() => <NotFound />}>
+                    <View />
+                  </NotFoundBoundary>
+                </Router>
+              </HelmetProvider>
+            </Suspense>
+          </InternationalizationProvider>
+        </AlertProvider>
       </SpinnerProvider>,
       rootElement,
     )
