@@ -1,6 +1,7 @@
-import { createMachine, assign } from 'xstate'
-import states from 'stateMachines/atoms/globalAlert/states'
-import events from 'stateMachines/atoms/globalAlert/events'
+import { createMachine } from 'xstate'
+import states from 'stateMachines/molecules/globalAlert/states'
+import events from 'stateMachines/molecules/globalAlert/events'
+import saveErrorInContext from 'stateMachines/molecules/globalAlert/actions/saveErrorInContext'
 
 export const machineDefinition = {
   id: 'globalAlert',
@@ -14,10 +15,7 @@ export const machineDefinition = {
       on: {
         [events.TOGGLE]: {
           target: states.VISIBLE,
-          actions: assign((context, event) => {
-            context.type = event.data.type
-            context.message = event.data.message
-          })
+          actions: [saveErrorInContext]
         },
       },
     },

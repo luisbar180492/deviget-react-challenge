@@ -1,7 +1,8 @@
 import React, { createContext, useContext } from 'react'
 import { useMachine } from  '@xstate/react'
-import machine from 'stateMachines/atoms/globalAlert'
+import machine from 'stateMachines/molecules/globalAlert'
 import propTypes from 'prop-types'
+import Text from 'atoms/Text'
 
 const colors = {
   error: 'bg-red-300',
@@ -14,7 +15,10 @@ const GlobalAlert = ({ message, type }) => {
     <div
       className={`h-24 w-full ${colors[type]} fixed flex justify-center items-center`}
     >
-      <h3>{message}</h3>
+      <Text
+        as='h3'
+        text={message}
+      />
     </div>
   )
 }
