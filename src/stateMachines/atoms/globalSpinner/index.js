@@ -1,8 +1,8 @@
-import { Machine } from 'xstate'
+import { createMachine } from 'xstate'
 import states from 'stateMachines/atoms/globalSpinner/states'
 import events from 'stateMachines/atoms/globalSpinner/events'
-  
-export default Machine({
+
+const machineDefinition = createMachine({
   id: 'globalSpinner',
   initial: states.INVISIBLE,
   states : {
@@ -18,3 +18,5 @@ export default Machine({
     },
   },
 })
+  
+export default createMachine(machineDefinition)

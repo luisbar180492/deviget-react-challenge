@@ -1,12 +1,17 @@
-import { Machine } from 'xstate'
+import { createMachine } from 'xstate'
 import states from 'stateMachines/pages/game/states'
 import children from 'stateMachines/pages/game/children'
 import events from 'stateMachines/pages/game/events'
 import toggleTheme from 'stateMachines/pages/game/actions/toggleTheme'
 import connect from 'stateMachines/pages/game/services/connect'
 import checkboxMachine from 'stateMachines/atoms/checkbox'
+import boardMachine from 'stateMachines/atoms/board'
+import lockBoard from 'stateMachines/pages/game/actions/lockBoard'
+import unlockBoard from 'stateMachines/pages/game/actions/unlockBoard'
+import boardEvents from 'stateMachines/atoms/board/events'
+import checkboxEvents from 'stateMachines/atoms/checkbox/events'
 
-export default Machine({
+export const machineDefinition = {
   id: 'game',
   initial: states.IDLE,
   context: {
@@ -14,10 +19,16 @@ export default Machine({
     error: undefined,
     socket: undefined,
   },
-  invoke: {
-    id: children.CHECKBOX,
-    src: checkboxMachine,
-  },
+  invoke: [
+    {
+      id: children.CHECKBOX,
+      src: checkboxMachine,
+    },
+    {
+      id: children.BOARD,
+      src: boardMachine,
+    },
+  ],
   states : {
     [states.IDLE]: {
       invoke: {
@@ -26,55 +37,62 @@ export default Machine({
         onError: connect.onError,
       },
       on: {
-        [events.TOGGLE_THEME]: {
-          actions: [toggleTheme],
+        [checkboxEvents.TOGGLE]: {
+          actions: [...toggleTheme],
           target: states.IDLE,
         },
-      }
+      },
     },
     [states.WAITING]: {
       on: {
-        [events.TOGGLE_THEME]: {
-          actions: [toggleTheme],
+        [checkboxEvents.TOGGLE]: {
+          actions: [...toggleTheme],
           target: states.WAITING,
         },
-        [events.UNLOCK]: {
-          target: states.UNLOCKED,
+        [events.PLAY]: {
+          target: states.PLAYING,
         },
-        [events.LOCK]: {
-          target: states.LOCKED,
-        },
-      }
+      },
     },
-    [states.LOCKED]: {
+    [states.PLAYING]: {
       on: {
-        [events.TOGGLE_THEME]: {
-          actions: [toggleTheme],
-          target: states.LOCKED,
+        [checkboxEvents.TOGGLE]: {
+          actions: [...toggleTheme],
+          target: states.PLAYING,
         },
-        [events.UNLOCK]: {
-          target: states.UNLOCKED,
+        [events.FINISH]: {
+          target: states.FINISHED,
         },
-      }
+        [boardEvents.LOCK]: {
+          actions: [lockBoard],
+          target: states.PLAYING,
+        },
+        [boardEvents.UNLOCK]: {
+          actions: [unlockBoard],
+          target: states.PLAYING,
+        },
+      },
     },
-    [states.UNLOCKED]: {
+    [states.FINISHED]: {
       on: {
-        [events.TOGGLE_THEME]: {
-          actions: [toggleTheme],
-          target: states.UNLOCKED,
+        [checkboxEvents.TOGGLE]: {
+          actions: [...toggleTheme],
+          target: states.FINISHED,
         },
-        [events.LOCK]: {
-          target: states.LOCKED,
+        [events.PLAY]: {
+          target: states.PLAYING,
         },
-      }
+      },
     },
     [states.ERROR]: {
       on: {
-        [events.TOGGLE_THEME]: {
-          actions: [toggleTheme],
+        [checkboxEvents.TOGGLE]: {
+          actions: [...toggleTheme],
           target: states.ERROR,
-        }
-      }
-    }
+        },
+      },
+    },
   },
-})
+}
+
+export default createMachine(machineDefinition)

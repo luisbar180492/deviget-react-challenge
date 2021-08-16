@@ -1,7 +1,7 @@
 export default {
   IDLE: 'idle',
   WAITING: 'waiting',
-  UNLOCKED: 'unlocked',
-  LOCKED: 'locked',
+  PLAYING: 'playing',
+  FINISHED: 'finished',
   ERROR: 'error',
 }

@@ -1,13 +1,23 @@
 import React from 'react'
 import propTypes from 'prop-types'
+import { useActor } from '@xstate/react'
+import states from 'stateMachines/atoms/board/states'
+import events from 'stateMachines/atoms/board/events'
 
 const x = [ '64', '192', '320', '448', '576', '704', '832' ]
 const y = [ '64', '192', '320', '448', '576', '704' ]
 
-const Board = ({ dark, onClick, locked }) => {
+const Board = ({ dark, machine, onClickCircle }) => {
+  const [state, send] = useActor(machine)
 
-  const onClickCircle = (row, col) => () => {
-    onClick(row, col)
+  const onClick = (row, col) => () => {
+    onClickCircle(row, col, () => send({
+      payload: {
+        row,
+        col,
+      },
+      type: events.FILL_CIRCLE,
+    }))
   }
 
   const renderCircles = () => {
@@ -15,13 +25,13 @@ const Board = ({ dark, onClick, locked }) => {
       return x.map((x, col) => {
         return (
           <circle
-            className={`${ locked ? 'cursor-not-allowed' : 'cursor-pointer' }`}
+            className={`${ state.matches(states.LOCKED) ? 'cursor-not-allowed' : 'cursor-pointer' }`}
             fill='#C4C4C4'
             r='50'
             key={`${row},${col}`}
             cx={x}
             cy={y}
-            onClick={locked ? null : onClickCircle(row, col)}
+            onClick={state.matches(states.LOCKED) ? null : onClick(row, col)}
           />
         )
       })
@@ -51,8 +61,8 @@ const Board = ({ dark, onClick, locked }) => {
 
 Board.propTypes = {
   dark: propTypes.bool.isRequired,
-  onClick: propTypes.func.isRequired,
-  locked: propTypes.bool.isRequired,
+  machine: propTypes.object.isRequired,
+  onClickCircle: propTypes.func.isRequired,
 }
 
 export default Board

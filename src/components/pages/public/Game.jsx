@@ -7,16 +7,19 @@ import HeaderAndBody from 'templates/HeaderAndBody'
 import About from 'molecules/About'
 import Board from 'atoms/Board'
 import { useInternationalizationContext } from 'atoms/InternationalizationProvider'
+import boardEvents from 'stateMachines/atoms/board/events'
+import checkboxEvents from 'stateMachines/atoms/checkbox/events'
 
 const Game = () => {
   const [gameState, send] = useMachine(machine, { devTools: true })
   const [language, setLanguage] = useInternationalizationContext()
 
-  const onClick = (row, col) => {
+  const onClick = (row, col, callback) => {
     const onAck = () => {
       send({
-        type: events.LOCK
+        type: boardEvents.LOCK
       })
+      callback()
     }
 
     gameState.context.socket.send({ id: gameState.context.socket.id, row, col }, onAck)
@@ -36,13 +39,16 @@ const Game = () => {
     const onAckMessage = (data, ack) => {
       ack()
       send({
-        type: events.UNLOCK
+        type: boardEvents.UNLOCK
       })
     }
 
     const onReady = (data, ack) => {
       send({
-        type: data.id === gameState.context.socket.id ? events.UNLOCK : events.LOCK
+        type: events.PLAY,
+        payload: {
+          socketId: data.id,
+        },
       })
     }
 
@@ -58,6 +64,13 @@ const Game = () => {
       }
     }
   }, [gameState])
+
+  useEffect(() => {
+    if (gameState.matches(states.PLAYING) && gameState.event.type === events.PLAY )
+      send({
+        type: gameState.event.payload.socketId === gameState.context.socket.id ? boardEvents.UNLOCK : boardEvents.LOCK
+      })
+  }, [gameState])
   
   return (
     <HeaderAndBody
@@ -66,7 +79,7 @@ const Game = () => {
         checkbox: {
           label: 'toolbar.txt2',
           payload: {
-            event: events.TOGGLE_THEME,
+            event: checkboxEvents.TOGGLE,
           },
           machine: gameState.children.checkbox,
         },
@@ -112,8 +125,8 @@ const Game = () => {
       />
       <Board
         dark={gameState.context.dark}
-        onClick={onClick}
-        locked={gameState.matches(states.WAITING) || gameState.matches(states.LOCKED)}
+        machine={gameState.children.board}
+        onClickCircle={onClick}
       />
     </HeaderAndBody>
   )

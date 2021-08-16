@@ -1,3 +1,4 @@
 module.exports = {
-  CHECKBOX: 'checkbox'
+  CHECKBOX: 'checkbox',
+  BOARD: 'board',
 }
