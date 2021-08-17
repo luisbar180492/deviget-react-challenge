@@ -6,7 +6,7 @@ import Text from 'atoms/Text'
 
 const colors = {
   error: 'bg-red-300',
-  success: 'bg-red-300',
+  success: 'bg-green-300',
 }
 
 const GlobalAlert = ({ message, type }) => {

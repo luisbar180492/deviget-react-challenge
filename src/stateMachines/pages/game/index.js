@@ -89,13 +89,11 @@ export const machineDefinition = {
       },
     },
     [states.FINISHED]: {
+      type: 'final',
       on: {
         [checkboxEvents.TOGGLE]: {
           actions: [...toggleTheme],
           target: states.FINISHED,
-        },
-        [events.PLAY]: {
-          target: states.PLAYING,
         },
       },
     },

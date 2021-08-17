@@ -1,4 +1,4 @@
-import { createMachine } from 'xstate'
+import { createMachine, sendParent } from 'xstate'
 import states from 'stateMachines/atoms/board/states'
 import events from 'stateMachines/atoms/board/events'
 import fillCircle from 'stateMachines/atoms/board/actions/fillCircle'
@@ -21,6 +21,7 @@ export const machineDefinition = {
       on: {
         [events.UNLOCK]: states.UNLOCKED,
         [events.LOCK]: states.LOCKED,
+        [events.FINISH]: states.FINISHED,
       },
     },
     [states.UNLOCKED]: {
@@ -31,7 +32,11 @@ export const machineDefinition = {
           actions: [fillCircle],
           target: states.UNLOCKED,
         },
+        [events.FINISH]: states.FINISHED,
       },
+    },
+    [states.FINISHED]: {
+      entry: sendParent((context, event) => event)
     },
   },
 }

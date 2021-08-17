@@ -99,6 +99,14 @@ const Game = () => {
       toggleAlert({ type: globalAlertEvents.TOGGLE, payload: { type: 'error', message: gameState.context.error.message } })
     
   }, [gameState.context.error])
+
+  useEffect(() => {
+    if (gameState.matches(states.FINISHED)) 
+      toggleAlert({ type: globalAlertEvents.TOGGLE, payload: {
+        type: 'success', message: gameState.event.payload.winner === 'red' ? 'game.txt14' : 'game.txt15' } 
+      })
+    
+  }, [gameState])
   
   return (
     <HeaderAndBody

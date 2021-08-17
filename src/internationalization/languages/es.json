@@ -2,16 +2,18 @@
   "toolbar.txt1": "Connect Four",
   "toolbar.txt2": "Claro/Obscuro",
   "game.txt1": "`Historia`",
-  "game.txt2": "Connect 4 o Four-in-a-Row tiene sus raíces en Tic-Tac-Toe, un simple juego de tres en una fila a lápiz y papel. El objetivo del juego es conseguir cuatro piezas seguidas. Four-In-A-Row, también, agrega el elemento de colocación restringida al requerir que los jugadores \"dejen caer\" las piezas verticalmente por el tablero. En Estados Unidos, este juego se popularizó bajo el nombre de Connect Four. El nombre \"Connect Four\" fue acuñado por primera vez por Milton Bradley Company en 1974. La compañía fue fundada por Milton Bradley en Springfield, Massachusetts en 1860. La compañía es conocida por sus contribuciones en las industrias de juegos de mesa y videojuegos.",
+  "game.txt2": "Connect 4 o Four-in-a-Row tiene sus raíces en Tic-Tac-Toe, un simple juego de cuatro en una fila a lápiz y papel. El objetivo del juego es conseguir cuatro piezas seguidas. Four-In-A-Row, también, agrega el elemento de colocación restringida al requerir que los jugadores \"dejen caer\" las piezas verticalmente por el tablero. En Estados Unidos, este juego se popularizó bajo el nombre de Connect Four. El nombre \"Connect Four\" fue acuñado por primera vez por Milton Bradley Company en 1974. La compañía fue fundada por Milton Bradley en Springfield, Massachusetts en 1860. La compañía es conocida por sus contribuciones en las industrias de juegos de mesa y videojuegos.",
   "game.txt3": "`El tablero`",
   "game.txt4": "El tablero de juego oficial es un tablero de juego de plástico de 6 filas por 7 columnas con ranuras en el medio para colocar las piezas. También hay un interruptor en el lado derecho e izquierdo del tablero que se utiliza para liberar las piezas de sus ranuras, restableciendo así el tablero.",
   "game.txt5": "`Las piezas`",
   "game.txt6": "Las piezas oficiales de Connect Four son 42 piezas de juego a cuadros negros y rojos (21 de cada color). Debido al tablero de juego, cualquier cosa aparte de las piezas a cuadros resulta bastante ineficiente, ya que la mayoría de las piezas sustituidas no se apilan bien entre sí.",
   "game.txt7": "`Reglas`",
-  "game.txt8": "- Para moverse: Cada jugador toma turnos alternos. Durante el turno de cada jugador, deja caer una pieza de color del color de ese jugador en las ranuras del tablero de juego.\n\n - Para ganar: Para conseguir tres seguidos, vertical, horizontal o diagonalmente.",
+  "game.txt8": "- Para moverse: Cada jugador toma turnos alternos. Durante el turno de cada jugador, deja caer una pieza de color del color de ese jugador en las ranuras del tablero de juego.\n\n - Para ganar: Para conseguir cuatro seguidos, vertical, horizontal o diagonalmente.",
   "game.txt9": "`Estrategias`",
-  "game.txt10": "- Principiantes: Recuerde revisar todas las líneas de conexión posibles, incluidas las líneas horizontales, verticales y diagonales para detectar posibles amenazas.\n\n - Avanzado: Una estrategia clave para ganar es hacer dos amenazas simultáneas para el oponente. Por lo general, esto implica conectar tres discos para evitar que el oponente tenga una ventaja en esa columna. Además, recuerde que los discos colocados en el medio son más valiosos que los que se colocan en los lados porque los jugadores tienen más posibilidades de crear cuatro en fila con ellos.",
+  "game.txt10": "- Principiantes: Recuerde revisar todas las líneas de conexión posibles, incluidas las líneas horizontales, verticales y diagonales para detectar posibles amenazas.\n\n - Avanzado: Una estrategia clave para ganar es hacer dos amenazas simultáneas para el oponente. Por lo general, esto implica conectar cuatro discos para evitar que el oponente tenga una ventaja en esa columna. Además, recuerde que los discos colocados en el medio son más valiosos que los que se colocan en los lados porque los jugadores tienen más posibilidades de crear cuatro en fila con ellos.",
   "game.txt11": "Ingles",
   "game.txt12": "Español",
-  "game.txt13": "La columna esta llena"
+  "game.txt13": "La columna esta llena",
+  "game.txt14": "Jugador rojo gano!",
+  "game.txt15": "Jugador azul gano!"
 }
