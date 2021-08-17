@@ -2,7 +2,7 @@ import { createMachine } from 'xstate'
 import states from 'stateMachines/atoms/globalSpinner/states'
 import events from 'stateMachines/atoms/globalSpinner/events'
 
-const machineDefinition = createMachine({
+const machineDefinition = {
   id: 'globalSpinner',
   initial: states.INVISIBLE,
   states : {
@@ -17,6 +17,6 @@ const machineDefinition = createMachine({
       },
     },
   },
-})
+}
   
 export default createMachine(machineDefinition)

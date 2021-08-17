@@ -11,11 +11,15 @@ import boardEvents from 'stateMachines/atoms/board/events'
 import checkboxEvents from 'stateMachines/atoms/checkbox/events'
 import globalAlertEvents from 'stateMachines/molecules/globalAlert/events'
 import { useGlobalAlertContext } from 'molecules/GlobalAlert'
+import globalSpinnerEvents from 'stateMachines/atoms/globalSpinner/events'
+import globalSpinnerStates from 'stateMachines/atoms/globalSpinner/states'
+import { useGlobalSpinnerContext } from 'atoms/GlobalSpinner'
 
 const Game = () => {
-  const [gameState, send] = useMachine(machine, { devTools: true })
+  const [state, send] = useMachine(machine, { devTools: true })
   const [language, setLanguage] = useInternationalizationContext()
   const [alertState, toggleAlert] = useGlobalAlertContext()
+  const [spinnerState, toggleSpinner] = useGlobalSpinnerContext()
 
   const onClick = (row, col) => {
     if (row === -1) return send({
@@ -28,7 +32,7 @@ const Game = () => {
         payload: {
           row,
           col,
-          color: gameState.context.socket.id === gameState.context.playerOne ? 'red' : 'blue',
+          color: state.context.socket.id === state.context.playerOne ? 'red' : 'blue',
         }
       })
       send({
@@ -36,7 +40,7 @@ const Game = () => {
       })
     }
 
-    gameState.context.socket.send({ socketId: gameState.context.socket.id, row, col }, onAck)
+    state.context.socket.send({ socketId: state.context.socket.id, row, col }, onAck)
   }
 
   const onChange = (event) => {
@@ -44,10 +48,10 @@ const Game = () => {
   }
 
   useEffect(() => {
-    if (!gameState.context.socket) return
+    if (!state.context.socket) return
 
     const onFull = (data, ack) => {
-      gameState.context.socket.disconnect(true)
+      state.context.socket.disconnect(true)
     }
 
     const onAckMessage = ({ row, col, socketId }, ack) => {
@@ -60,7 +64,7 @@ const Game = () => {
         payload: {
           row,
           col,
-          color: socketId === gameState.context.playerOne ? 'red' : 'blue',
+          color: socketId === state.context.playerOne ? 'red' : 'blue',
         }
       })
     }
@@ -74,39 +78,44 @@ const Game = () => {
         },
       })
       send({
-        type: playerOne === gameState.context.socket.id ? boardEvents.UNLOCK : boardEvents.LOCK
+        type: playerOne === state.context.socket.id ? boardEvents.UNLOCK : boardEvents.LOCK
       })
     }
 
-    gameState.context.socket.on('full', onFull)
-    gameState.context.socket.on('message', onAckMessage)
-    gameState.context.socket.on('ready', onReady)
+    state.context.socket.on('full', onFull)
+    state.context.socket.on('message', onAckMessage)
+    state.context.socket.on('ready', onReady)
 
     return () => {
-      if (gameState.context.socket) {
-        gameState.context.socket.removeListener('message')
-        gameState.context.socket.removeListener('ready')
-        gameState.context.socket.removeListener('full')
+      if (state.context.socket) {
+        state.context.socket.removeListener('message')
+        state.context.socket.removeListener('ready')
+        state.context.socket.removeListener('full')
       }
     }
-  }, [gameState])
+  }, [state])
 
   useEffect(() => {
-    if (gameState.matches(states.FULL_ERROR))
+    if (state.matches(states.FULL_ERROR))
       toggleAlert({ type: globalAlertEvents.TOGGLE, payload: { type: 'error', message: 'game.txt13' } })
     
-    if (gameState.matches(states.ERROR))
-      toggleAlert({ type: globalAlertEvents.TOGGLE, payload: { type: 'error', message: gameState.context.error.message } })
-    
-  }, [gameState.context.error])
+    if (state.matches(states.ERROR))
+      toggleAlert({ type: globalAlertEvents.TOGGLE, payload: { type: 'error', message: state.context.error.message } })
+  }, [state.context.error])
 
   useEffect(() => {
-    if (gameState.matches(states.FINISHED)) 
+    if (state.matches(states.FINISHED)) 
       toggleAlert({ type: globalAlertEvents.TOGGLE, payload: {
-        type: 'success', message: gameState.event.payload.winner === 'red' ? 'game.txt14' : 'game.txt15' } 
+        type: 'success', message: state.event.payload.winner === 'red' ? 'game.txt14' : 'game.txt15' } 
       })
-    
-  }, [gameState])
+  }, [state])
+
+  useEffect(() => {
+    if (state.matches(states.WAITING) && spinnerState.matches(globalSpinnerStates.INVISIBLE))
+      toggleSpinner({ type: globalSpinnerEvents.TOGGLE })
+    if (state.matches(states.PLAYING) && spinnerState.matches(globalSpinnerStates.VISIBLE)) 
+      toggleSpinner({ type: globalSpinnerEvents.TOGGLE })
+  }, [state])
   
   return (
     <HeaderAndBody
@@ -117,7 +126,7 @@ const Game = () => {
           payload: {
             event: checkboxEvents.TOGGLE,
           },
-          machine: gameState.children.checkbox,
+          machine: state.children.checkbox,
         },
         dropdown: {
           value: language,
@@ -160,8 +169,8 @@ const Game = () => {
         ]}
       />
       <Board
-        dark={gameState.context.dark}
-        machine={gameState.children.board}
+        dark={state.context.dark}
+        machine={state.children.board}
         onClickCircle={onClick}
       />
     </HeaderAndBody>
